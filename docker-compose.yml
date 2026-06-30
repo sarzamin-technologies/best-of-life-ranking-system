@@ -1,0 +1,23 @@
+# Local Postgres for the ranking DWH.
+#   docker compose up -d
+#   psql postgresql://ranking:ranking@localhost:5544/ranking -f sql/001_dwh.sql
+services:
+  dwh:
+    image: postgres:16
+    container_name: ontario-ranking-dwh
+    environment:
+      POSTGRES_USER: ranking
+      POSTGRES_PASSWORD: ranking
+      POSTGRES_DB: ranking
+    ports:
+      - "5544:5432"
+    volumes:
+      - ranking_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ranking"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  ranking_pgdata:

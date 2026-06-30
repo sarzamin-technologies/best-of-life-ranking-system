@@ -1,0 +1,20 @@
+# Ranking weights — tune these without touching code.
+#
+# pillars: relative weight of each pillar in the final score. They are
+# renormalized over whichever pillars a business actually has data for, so a
+# missing pillar never silently shrinks a business's total.
+
+pillars:
+  satisfaction: 0.30   # Bayesian rating across Google + Yelp, cross-platform consistency
+  service: 0.20        # review-text NLP: service/staff sentiment, complaint rate
+  popularity: 0.15     # review volume (log), cross-platform + Reddit/web mentions
+  digital: 0.15        # website existence + Firecrawl SEO/quality
+  search: 0.10         # SEMrush authority/traffic + SERP rank for the topic query
+  ai: 0.10             # LLM recommendation/mention rate for the topic query
+
+# Bayesian shrinkage prior for ratings (used in transform.bayesian_rating).
+#   prior_mean:    the rating a brand-new business is assumed to have
+#   prior_strength: how many "virtual" reviews that prior is worth
+bayesian:
+  prior_mean: 4.0
+  prior_strength: 20

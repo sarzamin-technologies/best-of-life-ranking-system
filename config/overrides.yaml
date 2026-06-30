@@ -1,0 +1,10 @@
+# Manual, auditable corrections to factual business data that the public sources
+# get wrong (e.g. an outdated website on a Google listing). Keyed by Google place_id.
+# Applied every run by the collect stage, so corrections survive monthly re-runs.
+#
+# These correct DATA only — they never change rankings or pin positions.
+
+businesses:
+  # O Biscotti (North York) — Google lists an outdated framer placeholder; real site is obiscotti.com
+  ChIJ7do_KqjT1IkR7UZ6kJB8oZQ:
+    website: https://obiscotti.com/
